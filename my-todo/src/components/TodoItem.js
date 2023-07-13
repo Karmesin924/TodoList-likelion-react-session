@@ -1,5 +1,3 @@
-TodoItem.js;
-
 import "./TodoItem.css";
 import React from "react";
 
