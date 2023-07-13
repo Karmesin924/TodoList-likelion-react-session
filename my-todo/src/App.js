@@ -1,5 +1,5 @@
 import "./App.css";
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import TodoList from "./components/TodoList";
 
 function App() {
@@ -16,6 +16,13 @@ function App() {
     setInputValue("");
   };
 
+  const removeListHandler = (index) => {
+    const newTodoList = todoList.filter((item, i) => i !== index);
+    setTodoList(newTodoList);
+  };
+
+  useEffect(() => {}, []);
+
   return (
     <div className="container">
       <p>명언</p>
@@ -31,9 +38,11 @@ function App() {
         onChange={changeInputHandler}
         value={inputValue}
       />
-      <button onClick={addListHandler}>추가</button>
+      <button className="add-button" onClick={addListHandler}>
+        추가
+      </button>
 
-      <TodoList todoList={todoList} />
+      <TodoList removeListHandler={removeListHandler} todoList={todoList} />
     </div>
   );
 }

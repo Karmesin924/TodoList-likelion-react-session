@@ -1,3 +1,5 @@
+TodoList.js;
+
 import React from "react";
 import TodoItem from "./TodoItem";
 
@@ -6,7 +8,14 @@ const TodoList = (props) => {
     <div>
       <h2>할 일 목록</h2>
       {props.todoList.map((item, index) => {
-        return <TodoItem key={index} item={item} />;
+        return (
+          <TodoItem
+            removeListHandler={props.removeListHandler}
+            key={index}
+            index={index}
+            item={item}
+          />
+        );
       })}
     </div>
   );

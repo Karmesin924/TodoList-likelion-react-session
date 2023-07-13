@@ -1,6 +1,22 @@
-.item {
+TodoItem.css .item {
+    display: flex;
+    justify-content: space-between;
     padding: 10px;
     background-color: #6633CC;
     border-radius: 4px;
     margin-bottom: 10px;
+}
+
+.item-x {
+    background-color: #311b52;
+    color: white;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+
+}
+
+.item-button {
+    display: flex;
+    gap: 10px;
 }
