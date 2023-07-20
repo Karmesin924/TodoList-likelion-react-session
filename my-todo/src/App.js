@@ -5,6 +5,7 @@ import TodoList from "./components/TodoList";
 function App() {
   const [inputValue, setInputValue] = useState("");
   const [todoList, setTodoList] = useState([]);
+  const [idValue, setIdValue] = useState(0);
 
   const changeInputHandler = (e) => {
     const value = e.target.value;
@@ -12,12 +13,13 @@ function App() {
   };
 
   const addListHandler = () => {
-    setTodoList([...todoList, inputValue]);
+    setTodoList([...todoList, { id: idValue, data: inputValue }]);
     setInputValue("");
+    setIdValue((prev) => prev + 1);
   };
 
-  const removeListHandler = (index) => {
-    const newTodoList = todoList.filter((item, i) => i !== index);
+  const removeListHandler = (id) => {
+    const newTodoList = todoList.filter((item) => item.id !== id);
     setTodoList(newTodoList);
   };
 

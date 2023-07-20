@@ -3,11 +3,11 @@ import React from "react";
 
 const TodoItem = (props) => {
   const clickRemoveHandler = () => {
-    props.removeListHandler(props.index);
+    props.removeListHandler(props.item.id);
   };
   return (
     <div className="item">
-      <div>{props.item}</div>
+      <div>{props.item.data}</div>
       <div className="item-button">
         <input type="checkbox" />
         <button onClick={clickRemoveHandler} className="item-x">

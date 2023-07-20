@@ -9,8 +9,7 @@ const TodoList = (props) => {
         return (
           <TodoItem
             removeListHandler={props.removeListHandler}
-            key={index}
-            index={index}
+            key={item.id}
             item={item}
           />
         );
