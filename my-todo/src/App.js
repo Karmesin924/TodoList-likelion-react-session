@@ -7,6 +7,7 @@ function App() {
   const [todoList, setTodoList] = useState([]);
   const [idValue, setIdValue] = useState(0);
   const [selectedTag, setSelectedTag] = useState("공부");
+  const [phrase, setPhrase] = useState("");
 
   const changeInputHandler = (e) => {
     const value = e.target.value;
@@ -54,11 +55,17 @@ function App() {
     setSelectedTag(value);
   };
 
-  useEffect(() => {}, []);
+  useEffect(() => {
+    fetch("https://api.qwer.pw/request/helpful_text?apikey=guest", {
+      method: "GET",
+    })
+      .then((response) => response.json())
+      .then((data) => setPhrase(data[1].respond));
+  }, []);
 
   return (
     <div className="container">
-      <p>명언</p>
+      <p>{phrase}</p>
       <h1>TodoList</h1>
       <div>
         <input
