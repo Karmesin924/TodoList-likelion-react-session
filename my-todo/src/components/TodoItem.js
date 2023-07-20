@@ -6,7 +6,12 @@ const TodoItem = (props) => {
     props.removeListHandler(props.item.id);
   };
   return (
-    <div className="item">
+    <div
+      className="item"
+      style={{
+        background: props.item.searched == true ? "#4444eb" : "#6633cc",
+      }}
+    >
       <div>{props.item.data}</div>
       <div className="item-button">
         <input type="checkbox" />

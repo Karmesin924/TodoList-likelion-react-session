@@ -13,7 +13,10 @@ function App() {
   };
 
   const addListHandler = () => {
-    setTodoList([...todoList, { id: idValue, data: inputValue }]);
+    setTodoList([
+      ...todoList,
+      { id: idValue, data: inputValue, searched: false },
+    ]);
     setInputValue("");
     setIdValue((prev) => prev + 1);
   };
@@ -23,6 +26,27 @@ function App() {
     setTodoList(newTodoList);
   };
 
+  const searchListHandler = () => {
+    const newTodoList = todoList.map((item) => {
+      if (inputValue === "") {
+        return {
+          ...item,
+          searched: false,
+        };
+      } else if (item.data.includes(inputValue)) {
+        return {
+          ...item,
+          searched: true,
+        };
+      } else {
+        return {
+          ...item,
+          searched: false,
+        };
+      }
+    });
+    setTodoList(newTodoList);
+  };
   useEffect(() => {}, []);
 
   return (
@@ -43,7 +67,9 @@ function App() {
       <button className="add-button" onClick={addListHandler}>
         추가
       </button>
-
+      <button className="search-button" onClick={searchListHandler}>
+        검색
+      </button>
       <TodoList removeListHandler={removeListHandler} todoList={todoList} />
     </div>
   );
