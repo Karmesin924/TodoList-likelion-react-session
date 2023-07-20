@@ -6,6 +6,7 @@ function App() {
   const [inputValue, setInputValue] = useState("");
   const [todoList, setTodoList] = useState([]);
   const [idValue, setIdValue] = useState(0);
+  const [selectedTag, setSelectedTag] = useState("공부");
 
   const changeInputHandler = (e) => {
     const value = e.target.value;
@@ -15,7 +16,7 @@ function App() {
   const addListHandler = () => {
     setTodoList([
       ...todoList,
-      { id: idValue, data: inputValue, searched: false },
+      { id: idValue, data: inputValue, searched: false, tag: selectedTag },
     ]);
     setInputValue("");
     setIdValue((prev) => prev + 1);
@@ -33,7 +34,7 @@ function App() {
           ...item,
           searched: false,
         };
-      } else if (item.data.includes(inputValue)) {
+      } else if (item.data.includes(inputValue) || item.tag === inputValue) {
         return {
           ...item,
           searched: true,
@@ -47,6 +48,12 @@ function App() {
     });
     setTodoList(newTodoList);
   };
+
+  const changeTagHandler = (event) => {
+    const value = event.target.value;
+    setSelectedTag(value);
+  };
+
   useEffect(() => {}, []);
 
   return (
@@ -54,9 +61,30 @@ function App() {
       <p>명언</p>
       <h1>TodoList</h1>
       <div>
-        <input type="radio" name="tag" value="공부" /> 공부
-        <input type="radio" name="tag" value="할일" /> 할일
-        <input type="radio" name="tag" value="살것" /> 살것
+        <input
+          onChange={changeTagHandler}
+          type="radio"
+          name="tag"
+          value="공부"
+          checked={selectedTag === "공부"}
+        />{" "}
+        공부
+        <input
+          onChange={changeTagHandler}
+          type="radio"
+          name="tag"
+          value="할일"
+          checked={selectedTag === "할일"}
+        />{" "}
+        할일
+        <input
+          onChange={changeTagHandler}
+          type="radio"
+          name="tag"
+          value="살것"
+          checked={selectedTag === "살것"}
+        />{" "}
+        살것
       </div>
       <input
         className="inputBar"
